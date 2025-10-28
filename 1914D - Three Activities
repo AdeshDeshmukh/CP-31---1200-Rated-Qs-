@@ -1,0 +1,119 @@
+// Templet : Adesh 
+ 
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define foo(i, a, b)  for (int i = (a); i < (b); ++i)
+#define foop(j, c, d) for (int j = (c); j <= (d); ++j)
+#define rfoop(i, a, b) for (int i = (a)-1; i >= (b); --i)
+#define all(x) (x).begin(), (x).end()
+#define sz(x) ((int)(x).size())
+#define ln(s) ((sting)(s).length())
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define F first
+#define S second
+#define sline(s) getline(cin, s)
+ 
+using ll = long long;
+using vll = vector<ll>;
+using pll = pair<ll, ll>;
+using vpll = vector<pll>;
+using vi = vector<int>;
+using pi = pair<int, int>;
+using vpi = vector<pi>;
+ 
+ 
+ 
+const long long MOD = 1e9 + 7;
+const long long INF = 1e18;
+const double PI = 3.141592653589793238462;
+const double EPS = 1e-9;
+ 
+ 
+ 
+#define sorta(v) sort(all(v))
+#define sortd(v) sort(all(v), greater<>()) 
+#define reverse(v) reverse(all(v))
+ 
+ 
+#define maxe(v) *max_element(all(v))
+#define mine(v) *min_element(all(v))
+#define sum(v) accumulate(all(v), 0LL) 
+ 
+ll gcd(ll a, ll b) {
+    while (b) {
+        a %= b;
+        swap(a, b);
+    }
+    return a;
+}
+ 
+ll lcm(ll a, ll b) {
+    if (a == 0 || b == 0) return 0;
+    return (a / gcd(a, b)) * b;
+}
+ 
+ll power(ll base, ll exp) {
+    ll res = 1;
+    base %= MOD;
+    while (exp > 0) {
+        if (exp % 2 == 1) res = (res * base) % MOD;
+        base = (base * base) % MOD;
+        exp /= 2;
+    }
+    return res;
+}
+ 
+ 
+ 
+ 
+void Adesh() {
+    
+    int n;
+    cin >> n;
+    
+    vector<pair<ll,int>> A(n), B(n), C(n);
+    
+    foo(i,0,n){ cin >> A[i].first; A[i].second = i; }    
+    foo(i,0,n){ cin >> B[i].first; B[i].second = i; }
+    foo(i,0,n){ cin >> C[i].first; C[i].second = i; }
+    
+    sort(A.rbegin(), A.rend());  
+    sort(B.rbegin(), B.rend());
+    sort(C.rbegin(), C.rend());
+    
+    int limit = min(3, n);
+    ll ans = 0;
+    foo(i,0,limit)
+        foo(j,0,limit)
+            foo(k,0,limit)
+                if (A[i].second != B[j].second && A[i].second != C[k].second && B[j].second != C[k].second)
+                    ans = max(ans, A[i].first + B[j].first + C[k].first);
+    cout << ans << endl ;
+}
+ 
+ 
+// Tx : O (nlogn)
+ 
+ 
+ 
+ 
+ 
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("Error.txt", "w", stderr);
+#endif
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+ 
+    
+    //ll t = 1 ;
+    int t; cin >> t; 
+    while (t--) { 
+        Adesh();
+    }
+ 
+    return 0;
+}
